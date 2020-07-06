@@ -1,0 +1,8 @@
+﻿  draw_robot.cpp
+c:\users\39380\source\repos\pioneer3robot_mappingandpthplanning\pioneer3robot_mappingandpthplanning\draw_robot.cpp(22): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  Generating code
+  2 of 1170 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    1 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  Pioneer3Robot_MappingAndPthPlanning.vcxproj -> C:\Users\39380\source\repos\Pioneer3Robot_MappingAndPthPlanning\x64\Release\Pioneer3Robot_MappingAndPthPlanning.exe
