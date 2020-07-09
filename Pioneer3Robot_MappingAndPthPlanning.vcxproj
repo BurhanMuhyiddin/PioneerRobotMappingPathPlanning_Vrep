@@ -137,13 +137,16 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\..\..\..\Program Files\CoppeliaRobotics\CoppeliaSimEdu\programming\b0RemoteApiBindings\cpp\b0RemoteApi.cpp" />
     <ClCompile Include="auxiliray_functions.cpp" />
+    <ClCompile Include="draw_map.cpp" />
     <ClCompile Include="draw_robot.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\..\..\Program Files\CoppeliaRobotics\CoppeliaSimEdu\programming\b0RemoteApiBindings\cpp\b0RemoteApi.h" />
     <ClInclude Include="auxiliray_functions.h" />
+    <ClInclude Include="draw_map.h" />
     <ClInclude Include="draw_robot.h" />
+    <ClInclude Include="menu_parameters.h" />
     <ClInclude Include="window_parameters.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
