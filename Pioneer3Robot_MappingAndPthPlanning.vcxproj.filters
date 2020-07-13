@@ -30,6 +30,15 @@
     <ClCompile Include="draw_map.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="a_star.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="go_to_goal.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="drive_robot.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="window_parameters.h">
@@ -48,6 +57,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="menu_parameters.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="a_star.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="go_to_goal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="drive_robot.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="robot_parameters.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

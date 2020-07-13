@@ -1,4 +1,7 @@
 #include "auxiliray_functions.h"
+#include <gl/glut.h>
+#include <gl/GLU.h>
+#include <gl/GL.h>
 #include "window_parameters.h"
 #include "draw_map.h"
 #include <math.h>
@@ -9,6 +12,9 @@
 using namespace std;
 
 extern Nodes *nodes;
+extern int init_point;
+extern int goal_point;
+extern int final_point;
 
 float map_between(float x, float in_min, float in_max, float out_min, float out_max)
 {
@@ -105,5 +111,22 @@ void read_processed_map()
 		}
 
 		processedMap.close();
+	}
+}
+
+void visualize_path()
+{
+	int node1 = final_point;
+	int node2 = nodes[final_point].parent;
+	
+	while (node2 != init_point)
+	{
+		glBegin(GL_LINES);
+			glVertex2i(nodes[node1].x, nodes[node1].y);
+			glVertex2i(nodes[node2].x, nodes[node2].y);
+		glEnd();
+
+		node1 = node2;
+		node2 = nodes[node2].parent;
 	}
 }

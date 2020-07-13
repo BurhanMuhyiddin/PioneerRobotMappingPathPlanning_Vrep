@@ -9,7 +9,9 @@
 #include "auxiliray_functions.h"
 #include "draw_map.h"
 #include "menu_parameters.h"
-
+#include "a_star.h"
+#include "drive_robot.h"
+#include "go_to_goal.h"
 using namespace std;
 
 // Definitions of callback functions
@@ -28,10 +30,17 @@ int sub1, sub2;
 bool flag1 = false;
 bool map_mode = false, path_planning_mode = false;
 int pioneerRobotHandle = 0;
+int rightMotorHandle = 0;
+int leftMotorHandle = 0;
+int goalDummyHandle = 0;
+int midPointDummyHandle = 0;
 vector<float> robotPos; // robot's position
 vector<float> robotOrn; // robot's orientation
 vector<float> testOrn;
+vector<int>midPoints;
 // End of definition of user defined variables
+
+extern Nodes *nodes;
 
 void init()
 {
@@ -48,6 +57,10 @@ int main(int argc, char** argv)
 
 	// get some object handles
 	pioneerRobotHandle = b0RemoteApi::readInt(cl->simxGetObjectHandle("Pioneer_p3dx", cl->simxServiceCall()), 1);
+	rightMotorHandle = b0RemoteApi::readInt(cl->simxGetObjectHandle("Pioneer_p3dx_rightMotor", cl->simxServiceCall()), 1);
+	leftMotorHandle = b0RemoteApi::readInt(cl->simxGetObjectHandle("Pioneer_p3dx_leftMotor", cl->simxServiceCall()), 1);
+	goalDummyHandle = b0RemoteApi::readInt(cl->simxGetObjectHandle("goal_dummy", cl->simxServiceCall()), 1);
+	midPointDummyHandle = b0RemoteApi::readInt(cl->simxGetObjectHandle("midPoint", cl->simxServiceCall()), 1);
 	// opengl initialization
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE);
@@ -64,6 +77,8 @@ int main(int argc, char** argv)
 	glutMainLoop();
 }
 
+int counter = 0;
+
 void display_callback()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
@@ -73,7 +88,6 @@ void display_callback()
 	{
 		b0RemoteApi::readFloatArray(cl->simxGetObjectPosition(pioneerRobotHandle, -1, cl->simxServiceCall()), robotPos, 1);
 		b0RemoteApi::readFloatArray(cl->simxGetObjectOrientation(pioneerRobotHandle, -1, cl->simxServiceCall()), robotOrn, 1);
-		//cout << robotPos[0] << " " << robotPos[1] << endl;
 
 		draw_map();
 
@@ -93,17 +107,40 @@ void display_callback()
 		}
 		else if (path_planning_mode)
 		{
+			// get robot's position
+			float tmpX = map_between(robotPos[1], 2.47, -2.47, 1, (GRID_COLUMN_NUM - 1) * 1.0);
+			float tmpY = map_between(robotPos[0], 2.47, -2.47, 1, (GRID_ROW_NUM - 1) * 1.0);
+
 			if (!flag1)
 			{
 				cout << "Read processed map..." << endl;
 				read_processed_map();
 				cout << "Finished reading..." << endl;
+
+				// path planning
+				init_a_star(tmpX, tmpY);
+				solve_a_star();
+				get_mid_points();
 				flag1 = true;
 			}
-			draw_just_robot(map_between(robotPos[1], 2.210, -2.210, 1, (GRID_COLUMN_NUM - 2) * 1.0),
-				map_between(robotPos[0], 2.210, -2.210, 1, (GRID_ROW_NUM - 2) * 1.0),
-				robotOrn[2]);
-			// do path planning here
+			draw_just_robot(tmpX, tmpY, robotOrn[2]);
+			if (counter < midPoints.size() - 1)
+			{
+				counter++;
+			}
+			else
+			{
+				stop_robot();
+			}
+			//cout << counter << " " << nodes[midPoints[counter]].x << " " << nodes[midPoints[counter]].y << endl;
+			robot_go_to_goal(nodes[midPoints[counter]].y, nodes[midPoints[counter]].x);
+			/*glPointSize(5);
+			glBegin(GL_POINTS);
+			glVertex2i(22, 15);
+			glEnd();
+			robot_go_to_goal(15, 22);*/
+			Sleep(100);
+			visualize_path();
 		}
 	}
 	catch (const std::exception& exc)

@@ -130,7 +130,7 @@ void draw_robot_and_additional_parts(float x, float y, float theta)
 	}
 }
 
-void visualize_range(int sX, int sY, int gX, int gY)
+/*void visualize_range(int sX, int sY, int gX, int gY)
 {
 	int dx = gX - sX, dy = gY - sY;
 	int nx = abs(dx), ny = abs(dy);
@@ -157,7 +157,7 @@ void visualize_range(int sX, int sY, int gX, int gY)
 		nodes[sX * GRID_ROW_NUM + sY].b_observed = true;
 		//if (nodes[sX * Y_MAX + sY].bObstacle || isAroundObstacle(sX, sY))	return false;
 	}
-}
+}*/
 
 void limit_range(float* pX, float* pY)
 {

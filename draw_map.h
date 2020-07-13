@@ -5,8 +5,12 @@ struct Nodes
 {
 	int x;
 	int y;
+	int cost;
+	int h; // heuristic cost
+	int g; // g cost
+	int f; // f cost
 	bool b_obstacle;
-	bool b_observed;
+	bool b_visited;
 	int parent;
 };
 

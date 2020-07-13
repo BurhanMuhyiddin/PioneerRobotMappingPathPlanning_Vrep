@@ -101,7 +101,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <Optimization>MaxSpeed</Optimization>
+      <Optimization>Disabled</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
@@ -119,7 +119,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <Optimization>MaxSpeed</Optimization>
+      <Optimization>Disabled</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
@@ -137,16 +137,23 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\..\..\..\Program Files\CoppeliaRobotics\CoppeliaSimEdu\programming\b0RemoteApiBindings\cpp\b0RemoteApi.cpp" />
     <ClCompile Include="auxiliray_functions.cpp" />
+    <ClCompile Include="a_star.cpp" />
     <ClCompile Include="draw_map.cpp" />
     <ClCompile Include="draw_robot.cpp" />
+    <ClCompile Include="drive_robot.cpp" />
+    <ClCompile Include="go_to_goal.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\..\..\Program Files\CoppeliaRobotics\CoppeliaSimEdu\programming\b0RemoteApiBindings\cpp\b0RemoteApi.h" />
     <ClInclude Include="auxiliray_functions.h" />
+    <ClInclude Include="a_star.h" />
     <ClInclude Include="draw_map.h" />
     <ClInclude Include="draw_robot.h" />
+    <ClInclude Include="drive_robot.h" />
+    <ClInclude Include="go_to_goal.h" />
     <ClInclude Include="menu_parameters.h" />
+    <ClInclude Include="robot_parameters.h" />
     <ClInclude Include="window_parameters.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

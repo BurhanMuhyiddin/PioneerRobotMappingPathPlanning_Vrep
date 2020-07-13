@@ -9,5 +9,6 @@ float* rotate_vector_z(float theta, float* vector);
 void multiply_vector(std::vector<float> &matrix, std::vector<float> &vector_, float* res);
 void write_map_into_file();
 void read_processed_map();
+void visualize_path();
 
 #endif // !AUXILIRAY_FUNCTIONS_H_INCLUDED
